@@ -1,0 +1,5 @@
+# compiled binaries
+generator
+*.exe
+*.out
+*.o
