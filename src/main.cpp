@@ -4,6 +4,6 @@
 
 int main(int argc, char *argv[]) {
     Cli cli;
-
     cli.processArguments(argc, argv);
+    return 0; // ends the program
 }

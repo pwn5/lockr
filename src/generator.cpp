@@ -13,15 +13,14 @@ bool Password::checkLength(int length) {
     return length > 4 && length < 51;
 }
 
-void Password::setLength(int length) {
+bool Password::setLength(int length) {
     // prevent invalid length
     if (!checkLength(length)) {
-        std::cout << "Enter a length greather than 4 and less than 51.";
-        std::cout << std::endl;
-        exit(0);
+        return false;
     }
 
     this->length = length;
+    return true;
 }
 
 std::string Password::addRange(char start, char end) {

@@ -14,7 +14,7 @@ public:
              bool symbols = true, bool uppercase = true, bool lowercase = true, std::string password = "");
 
     // set new lengths
-    void setLength(int length);
+    bool setLength(int length);
 
     bool checkLength(int length);
     std::string generate();

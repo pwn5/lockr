@@ -20,17 +20,21 @@ void Cli::handleGeneratePassword(int argc, char *argv[]) {
         if (arg == "-l" || arg == "--length") {
 
             if (i + 1 < argc) {
-                password.setLength(std::stoi(argv[++i]));
-                ++i; // jumps the value
+                i++; // jumps the value
+                if (!password.setLength(std::stoi(argv[i]))) {
+                    std::cout << "Enter a length greater than 4 and less than 51.\n";
+                    return;
+                }
+
             } else {
                 std::cout << "Missing value for length.\n";
-                exit(0);
+                return;
             }
         }
 
         else {
             std::cout << "Unknown option: " << arg << "\n";
-            exit(0);
+            return;
         }
     }
 
@@ -40,9 +44,9 @@ void Cli::handleGeneratePassword(int argc, char *argv[]) {
 }
 
 void Cli::processArguments(int argc, char *argv[]) {
-    if (argc <= 1) {
+    if (argc < 2) {
         std::cout << "You don't give any arguments." << "\n";
-        exit(0);
+        return;
     }
 
     // gets the command value
@@ -50,9 +54,9 @@ void Cli::processArguments(int argc, char *argv[]) {
 
     if (command == "generate") {
 
-        if (argc <= 2) {
+        if (argc < 3) {
             std::cout << "No subcommand provided.\n";
-            exit(0);
+            return;
         }
 
         // gets the subcommand value
@@ -63,12 +67,12 @@ void Cli::processArguments(int argc, char *argv[]) {
         }
         else {
             std::cout << "Unknown generate subcommand.\n";
-            exit(0);
+            return;
         }
     }
 
     else {
         std::cout << "Unknown command.\n";
-        exit(0);
+        return;
     }
 }
